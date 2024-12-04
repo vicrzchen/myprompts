@@ -20,8 +20,9 @@ class PromptManager:
                 file_path = os.path.join(prompts_dir, filename)
                 with open(file_path, 'r', encoding='utf-8') as f:
                     category_prompts = json.load(f)
-                    for prompt in category_prompts:
+                    for i, prompt in enumerate(category_prompts):
                         prompt['category'] = category
+                        prompt['index'] = i  # 添加索引信息
                     prompts.extend(category_prompts)
         return prompts
 
@@ -64,13 +65,19 @@ class PromptManager:
 
     def delete_prompt(self, category, index):
         file_path = os.path.join(self.get_prompts_dir(), f"{category}.json")
-        with open(file_path, 'r', encoding='utf-8') as f:
-            prompts = json.load(f)
-        
-        if 0 <= index < len(prompts):
-            prompts.pop(index)
-            with open(file_path, 'w', encoding='utf-8') as f:
-                json.dump(prompts, f, ensure_ascii=False, indent=2)
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                prompts = json.load(f)
+            
+            if 0 <= index < len(prompts):
+                prompts.pop(index)
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    json.dump(prompts, f, ensure_ascii=False, indent=2)
+                return True
+            return False
+        except Exception as e:
+            print(f"删除提示词时出错: {str(e)}")
+            return False
 
 class AIConfigManager:
     @staticmethod

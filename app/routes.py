@@ -48,8 +48,11 @@ def edit_prompt(category, index):
 
 @bp.route('/prompt/<category>/<int:index>/delete', methods=['POST'])
 def delete_prompt(category, index):
-    prompt_manager.delete_prompt(category, index)
-    flash('提示词已删除')
+    success = prompt_manager.delete_prompt(category, index)
+    if success:
+        flash('提示词已成功删除')
+    else:
+        flash('删除失败：未找到对应的提示词')
     return redirect(url_for('main.index'))
 
 @bp.route('/ai-config', methods=['GET', 'POST'])

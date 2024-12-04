@@ -22,8 +22,8 @@
                 <td>{{ prompt.作者 }}</td>
                 <td>
                     <a href="{{ url_for('main.edit_prompt', category=prompt.category, index=loop.index0) }}">编辑</a>
-                    <form action="{{ url_for('main.delete_prompt', category=prompt.category, index=loop.index0) }}" method="post" style="display: inline;">
-                        <button type="submit" onclick="return confirm('确定要删除吗？')">删除</button>
+                    <form action="{{ url_for('main.delete_prompt', category=prompt.category, index=prompt.index) }}" method="post" style="display: inline;">
+                        <button type="submit" onclick="return confirm('确定要删除这个提示词吗？')" class="btn btn-danger btn-sm">删除</button>
                     </form>
                 </td>
             </tr>
