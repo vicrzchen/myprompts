@@ -16,7 +16,7 @@ Prompt Assistant 是一个Chrome扩展程序，用于管理和快速导入AI提�
 1. 克隆仓库
 
 ```bash
-git clone https://github.com/yourusername/prompt-assistant.git
+git clone https://github.com/vicrzchen/myprompts.git
 ```
 
 2. 安装依赖
