@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      width: 300px;
+      max-height: 600px;
+      margin: 0;
+      padding: 10px;
+      overflow-y: auto;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 4px 6px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    .filters {
+      display: flex;
+      gap: 4px;
+    }
+    .filters select {
+      flex: 1;
+      padding: 4px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+    .prompt-item {
+      padding: 6px 8px;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      margin-bottom: 4px;
+    }
+    .prompt-item:hover {
+      background-color: #f5f5f5;
+    }
+    .prompt-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin: 0 0 2px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .prompt-meta {
+      display: flex;
+      gap: 6px;
+      font-size: 11px;
+      color: #666;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .prompt-meta span {
+      white-space: nowrap;
+    }
+    #promptList {
+      overflow-y: auto;
+      max-height: calc(100vh - 100px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <input type="text" id="searchInput" placeholder="搜索提示词...">
+    <div class="filters">
+      <select id="categoryFilter">
+        <option value="">所有分类</option>
+        <option value="hobbies">兴趣爱好</option>
+        <option value="lifestyle">生活方式</option>
+        <option value="work">工作</option>
+        <option value="health">健康</option>
+        <option value="learning">学习</option>
+        <option value="wealth">财富</option>
+        <option value="general">通用</option>
+      </select>
+      <select id="aiFilter">
+        <option value="">所有AI</option>
+      </select>
+    </div>
+    <div id="promptList"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 

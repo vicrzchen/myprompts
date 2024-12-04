@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="ai-config">
+    <h1>AI 配置管理</h1>
+    
+    <!-- 添加新配置的表单 -->
+    <form method="POST" class="config-form">
+        <div class="form-group">
+            <label for="name">AI 名称</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="selector">选择器</label>
+            <input type="text" id="selector" name="selector" required>
+        </div>
+        <button type="submit">保存配置</button>
+    </form>
+
+    <!-- 现有配置列表 -->
+    <h2>现有配置</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>AI 名称</th>
+                <th>选择器</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for config in configs %}
+            <tr>
+                <td>{{ config.name }}</td>
+                <td>{{ config.selector }}</td>
+                <td>
+                    <form action="{{ url_for('main.ai_config') }}" method="post" style="display: inline;">
+                        <input type="hidden" name="name" value="{{ config.name }}">
+                        <input type="text" name="selector" value="{{ config.selector }}" style="width: 200px;">
+                        <button type="submit">更新</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %} 

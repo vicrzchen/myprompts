@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="prompt-edit">
+    <h1>{% if prompt %}编辑提示词{% else %}新建提示词{% endif %}</h1>
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="title">标题</label>
+            <input type="text" id="title" name="title" value="{{ prompt.标题 if prompt else '' }}" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="content">内容</label>
+            <textarea id="content" name="content" rows="5" required>{{ prompt.内容 if prompt else '' }}</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="version">版本</label>
+            <input type="text" id="version" name="version" value="{{ prompt.版本 if prompt else '1.0' }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="author">作者</label>
+            <input type="text" id="author" name="author" value="{{ prompt.作者 if prompt else '' }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="category">分类</label>
+            <select id="category" name="category">
+                <option value="hobbies" {% if prompt and prompt.category == 'hobbies' %}selected{% endif %} {% if not prompt %}disabled{% endif %}>兴趣爱好</option>
+                <option value="lifestyle" {% if prompt and prompt.category == 'lifestyle' %}selected{% endif %}>生活方式</option>
+                <option value="work" {% if prompt and prompt.category == 'work' %}selected{% endif %}>工作</option>
+                <option value="health" {% if prompt and prompt.category == 'health' %}selected{% endif %}>健康</option>
+                <option value="learning" {% if prompt and prompt.category == 'learning' %}selected{% endif %}>学习</option>
+                <option value="wealth" {% if prompt and prompt.category == 'wealth' %}selected{% endif %}>财富</option>
+                <option value="general" {% if prompt and prompt.category == 'general' %}selected{% endif %}>通用</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="ai_platform">适配AI</label>
+            <select id="ai_platform" name="ai_platform">
+                <option value="ChatGPT" {% if prompt and prompt.适配ai == 'ChatGPT' %}selected{% endif %}>ChatGPT</option>
+                <option value="Claude" {% if prompt and prompt.适配ai == 'Claude' %}selected{% endif %}>Claude</option>
+                <option value="Bard" {% if prompt and prompt.适配ai == 'Bard' %}selected{% endif %}>Bard</option>
+            </select>
+        </div>
+        
+        <button type="submit">保存</button>
+        <a href="{{ url_for('main.index') }}" class="button">取消</a>
+    </form>
+</div>
+{% endblock %} 

@@ -1,0 +1,11 @@
+{
+  "ChatGPT": {
+    "selector": "#prompt-textarea"
+  },
+  "Claude": {
+    "selector": "div[contenteditable='true']"
+  },
+  "Bard": {
+    "selector": "#mat-input-0"
+  }
+}

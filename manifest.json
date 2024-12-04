@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Prompt Assistant",
+  "version": "1.0",
+  "description": "快速导入和管理AI Prompts的Chrome插件",
+  "permissions": [
+    "storage",
+    "clipboardWrite",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://chat.openai.com/*",
+    "https://claude.ai/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [{
+    "matches": [
+      "https://chat.openai.com/*",
+      "https://claude.ai/*"
+    ],
+    "js": ["content.js"]
+  }],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+} 
